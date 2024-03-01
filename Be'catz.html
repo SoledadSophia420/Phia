@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be'catz</title>
+<link rel="icon" href="kk.ico" type="image/x-icon">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #FEDC56;
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: auto;
+      padding: 30px;
+      border: 2px solid #1e2b78;
+      border-radius: 10px;
+      background-color: #1e2b78;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+font-size: 30px;
+    }
+
+    h1 {
+      color: #f5c518;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 25px;
+      cursor: pointer;
+      background-color: #FF004F;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: orange;
+color: black;
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <h1>Be'catz</h1>
+  <div id="question"></div>
+  <div id="options"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "Question 1: What is the average sleep duration for an adult cat?",
+      options: ["A) 5-8 hours", "B) 10-12 hours", "C) 15-18 hours", "D) 20-22 hours"],
+      answer: "C) 15-18 hours"
+    },
+    {
+      question: "Question 2:  Which of the following breeds is known for its distinct lack of a traditional tail?",
+      options: ["A) Siamese", "B) Maine Coon", "C) Manx", "D) Persian"],
+      answer: "C) Manx"
+    },
+    {
+      question: "Question 3: What is the primary sense that cats use for navigation and communication?",
+      options: ["A) Hearing", "B) Smell", "C) Sight", "D) Taste"],
+      answer: "A) Hearing"
+    },
+    {
+      question: "Question 4: Which nutrient is essential in a cat's diet and is not required in the diet of dogs?",
+      options: ["A) Vitamin C", "B) Taurine", "C) Calcium", "D) Iron"],
+      answer: "B) Taurine"
+    },
+    {
+      question: "Question 5:  What behavior do cats commonly exhibit when they knead with their paws?",
+      options: ["A) Marking territory", "B) Stretching their muscles", "C) Sign of aggression", "D) Display of affection"],
+      answer: "D) Display of affection"
+    }
+  ];
+
+  const quizContainer = document.getElementById('question');
+  const optionsContainer = document.getElementById('options');
+
+  function loadQuestion(questionIndex) {
+    const currentQuestion = questions[questionIndex];
+    quizContainer.innerText = currentQuestion.question;
+    optionsContainer.innerHTML = '';
+    currentQuestion.options.forEach(option => {
+      const button = document.createElement('button');
+      button.innerText = option;
+      button.addEventListener('click', function() {
+        checkAnswer(option, currentQuestion.answer);
+      });
+      optionsContainer.appendChild(button);
+    });
+  }
+
+  let questionIndex = 0;
+  loadQuestion(questionIndex);
+
+  function checkAnswer(selectedOption, correctAnswer) {
+    if (selectedOption === correctAnswer) {
+      alert('You got it');
+    } else {
+      alert('Oopsies! The correct answer is: ' + correctAnswer);
+    }
+    questionIndex++;
+    if (questionIndex < questions.length) {
+      loadQuestion(questionIndex);
+    } else {
+      alert('Well Done');
+    }
+  }
+</script>
+
+</body>
+</html>
